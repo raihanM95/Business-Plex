@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - Business Plex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Stock Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <style>
+        /* for image slides */
+        .slides-image {
+            width: 1000px;
+            margin-left: 70px;
+        }
+
+        #image-height {
+            height: 300px;
+        }
+        /* //for image slides */
+    </style>
+
+    <!-- Bootstrap Core CSS -->
+    <!-- <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="~/Content/homecss/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- popup box -->
+    <link href="~/Content/homecss/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom CSS -->
+    <link href="~/Content/homecss/style.css" rel='stylesheet' type='text/css' />
+    <!-- font-awesome icons -->
+    <link href="~/Content/homecss/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- webfonts -->
+    <link href="//fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <!-- //webfonts -->
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="container">
+            <!-- nav -->
+            <nav class="navbar navbar-expand-lg navbar-light py-4">
+                <!-- logo -->
+                <h1>
+                    @Html.ActionLink("Business Plex", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </h1>
+                <!-- //logo -->
+                <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- main nav -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item active  mr-lg-3">
+                            @Html.ActionLink("Home", "", "", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item mr-lg-3">
+                            @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a href="#" data-toggle="dropdown" class="nav-link">
+                                Pages
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu multi-level" role="menu">
+                                <li class="nav-item">
+                                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#" class="nav-link">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="nav-link">Layout 1</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="blog3_style1.html" class="nav-link">Left Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog3_style2.html" class="nav-link">Right Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog3_style3.html" class="nav-link">Without Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="nav-link">Layout 2</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="blog2_style1.html" class="nav-link">Left Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog2_style2.html" class="nav-link">Right Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog2_style3.html" class="nav-link">Without Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="nav-link">Layout 3</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="blog_row_style1.html" class="nav-link">Left Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog_row_style2.html" class="nav-link">Right Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog_row_style3.html" class="nav-link">Without Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="nav-link">Layout 4</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="blog_col_style1.html" class="nav-link">Left Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog_col_style2.html" class="nav-link">Right Sidebar</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="blog_col_style3.html" class="nav-link">Without Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="soon.html" class="nav-link">Coming soon</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="maintenance.html" class="nav-link">Maintenance</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="error.html" class="nav-link">404</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="typo.html" class="nav-link">Typography</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mr-lg-3">
+                            @Html.ActionLink("Services", "", "", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-danger ml-lg-5 w3ls-btn" data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+                                Login
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //main nav -->
+            </nav>
+            <!-- //nav -->
+        </div>
+    </header>
+    <!-- //header -->
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <!-- footer -->
+        <footer class="py-sm-5">
+            <!-- footer container -->
+            <div class="container">
+                <div class="row py-5">
+                    <!-- footer grid1 -->
+                    <div class="col-lg-3 col-sm-6">
+                        <h2>
+                            @Html.ActionLink("Business Plex", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        </h2>
+                        <div class="fv3-contact mt-3">
+                            <span class="fas fa-home mr-2"></span>
+                            <p>90 Street, City, State 34789.</p>
+                        </div>
+                        <div class="fv3-contact">
+                            <span class="fas fa-phone-volume mr-2"></span>
+                            <p>+456 123 7890</p>
+                        </div>
+                        <div class="fv3-contact">
+                            <span class="fas fa-envelope-open mr-2"></span>
+                            <a href="mailto:info@businessPlex.com" class="text-secondary">info@businessPlex.com</a>
+                        </div>
+                    </div>
+                    <!-- //footer grid1 -->
+                    <!-- footer grid2 -->
+                    <div class="col-lg-3  col-sm-6 footv3-left text-lg-center my-sm-0 mt-5">
+                        <h3 class="mb-3">our services</h3>
+                        <ul class="list-agileits">
+                            <li>
+                                <a href="#">
+                                    quality resourcing
+                                </a>
+                            </li>
+                            <li class="my-3">
+                                <a href="#">
+                                    inventory tracking
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#">
+                                    financial planning
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    budget friendly
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //footer grid2 -->
+                    <!-- footer grid3 -->
+                    <div class="col-lg-3  col-sm-6 footv3-left text-lg-center my-lg-0 mt-sm-5 mt-5">
+                        <h3 class="mb-3">Navigation</h3>
+                        <ul class="list-agileits">
+                            <li>
+                                @Html.ActionLink("Home", "", "", new { area = "" }, new { @class = "" })
+                            </li>
+                            <li class="my-3">
+                                @Html.ActionLink("About Us", "About", "Home", new { area = "" }, new { @class = "" })
+                            </li>
+                            <li class="mb-3">
+                                @Html.ActionLink("Services", "", "Home", new { area = "" }, new { @class = "" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "" })
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //footer grid3 -->
+                    <!-- footer grid4  -->
+                    <div class="col-lg-3  col-sm-6 footv3-left my-lg-0 mt-5">
+                        <h3 class="mb-3">subscribe to newsletter</h3>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <input type="email" class="form-control  bg-dark border-0" id="email" placeholder="Enter email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="Submit" class="form-control bg-secondary text-white border-0" id="sub" value="submit" name="sub">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- //footer grid4 -->
+                </div>
+                <div class="cpy-right text-center  pt-5 pb-sm-0 pb-3">
+                    <p class="text-secondary">
+                        &copy; @DateTime.Now.Year - Business Plex | Developed by
+                        <a href="" class="text-white"> Team RAM.</a>
+                    </p>
+                </div>
+            </div>
+            <!-- //footer container -->
+        </footer>
+        <!-- //footer -->
+    </div>
+
+    <!-- Login modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control border" placeholder=" " name="Name" id="recipient-name" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password</label>
+                            <input type="password" class="form-control border" placeholder=" " name="Password" id="password" required="">
+                        </div>
+                        <div class="right-w3l">
+                            <input type="submit" class="form-control border text-white" value="Login">
+                        </div>
+                        <div class="row sub-w3l my-3">
+                            <div class="col sub-agile">
+                                <input type="checkbox" id="brand1" value="">
+                                <label for="brand1" class="text-muted">
+                                    <span></span>Remember me?
+                                </label>
+                            </div>
+                            <div class="col forgot-w3l text-right text-dark">
+                                <a href="#" class="text-white">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <p class="text-center">
+                            Don't have an account?
+                            <a href="#" data-toggle="modal" data-target="#exampleModal1" class="text-dark font-weight-bold">
+                                Register Now
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Login modal -->
+    <!-- Register modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Username</label>
+                            <input type="text" class="form-control border" placeholder=" " name="Name" id="recipient-rname" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control border" placeholder=" " name="Email" id="recipient-email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password1" class="col-form-label">Password</label>
+                            <input type="password" class="form-control border" placeholder=" " name="Password" id="password1" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password2" class="col-form-label">Confirm Password</label>
+                            <input type="password" class="form-control border" placeholder=" " name="Confirm Password" id="password2" required="">
+                        </div>
+                        <div class="sub-w3l">
+                            <div class="sub-agile">
+                                <input type="checkbox" id="brand2" value="">
+                                <label for="brand2" class="mb-3">
+                                    <span></span>I Accept to the Terms & Conditions
+                                </label>
+                            </div>
+                        </div>
+                        <div class="right-w3l">
+                            <input type="submit" class="form-control bg-light text-white" value="Register">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Register modal -->
+    
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/homejs/jquery-2.2.3.min.js"></script>
+    <!-- magnific-popup -->
+    <script src="~/Scripts/homejs/jquery.magnific-popup.js"></script>
+    <script>
+        //script for magnific pop up (about section)
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+        });
+    </script>
+    <!-- move-top -->
+    <script src="~/Scripts/homejs/move-top.js"></script>
+    <!-- easing -->
+    <script src="~/Scripts/homejs/easing.js"></script>
+    <!-- smooth scroll -->
+    <script src="~/Scripts/homejs/SmoothScroll.min.js"></script>
+    <!-- necessary snippets for few javascript files -->
+    <script src="~/Scripts/homejs/stock.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/homejs/bootstrap.js "></script>
+</body>
+</html>
+
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>*@

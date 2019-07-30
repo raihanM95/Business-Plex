@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+}
+
+<!-- inner banner -->
+<div class="inner_banner layer" id="home">
+    <div class="container">
+        <div class="agileinfo-inner">
+            <h3 class="text-center text-white">
+                Business Plex
+            </h3>
+        </div>
+    </div>
+</div>
+<!-- //inner banner -->
+<!-- breadcrumbs -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "" })
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+    </ol>
+</nav>
+<!-- //breadcrumbs -->
+<!-- contact -->
+<section class="wthree-row w3-contact" id="contact">
+    <div class="container py-sm-5 py-4">
+        <!-- title description -->
+        <div class="row py-md-5 pb-3">
+            <div class="col-lg-5  bb-left">
+                <span class="w3-line">say hello</span>
+                <h3 class="agile-title">contact us</h3>
+            </div>
+            <div class="col-lg-7 mt-lg-0 mt-3 px-lg-5">
+                <p>
+                    Donec consequat sapien ut leo cursus rhoncus. Nullam dui mi, vulputate ac metus at, semper varius orci.
+                    Nulla accumsan ac elit in congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                    per inceptos Class aptent taciti sociosqu ad litora torquent p himenaeos.
+                </p>
+            </div>
+        </div>
+        <!-- //title description -->
+        <!-- contact details -->
+        <div class="row contact-form p-sm-5 p-3">
+            <!-- contact left grid -->
+            <div class="col-lg-6  px-lg-5 map contact-right">
+                <div class="address">
+                    <h5 class="my-3">Contact info</h5>
+                    <div class="row py-3 wthree-cicon">
+                        <span class="fas fa-envelope-open mr-3"></span>
+                        <a href="mailto:info@businessPlex.com">info@businessPlex.com</a>
+                    </div>
+                    <div class="row py-3  wthree-cicon">
+                        <span class="fas fa-phone-volume mr-3"></span>
+                        <h6>+456 123 7890</h6>
+                    </div>
+                    <div class="row py-3  wthree-cicon">
+                        <span class="fas fa-globe mr-3"></span>
+                        <a href="#">www.businessPlex.com</a>
+                    </div>
+                    <div class="row py-3 wthree-cicon">
+                        <span class="fas fa-map-marker mr-3"></span>
+                        <h6>+456 123 7890</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- //contact left grid -->
+            <!-- contact right grid -->
+            <div class="col-lg-6 wthree-form-left mt-lg-0 mt-3">
+                <!-- contact form grid -->
+                <div class="contact-top1">
+                    <h5 class="my-3">send us a message</h5>
+                    <form action="#" method="get" class="f-color pt-3">
+                        <div class="form-group">
+                            <label for="contactusername">Name</label>
+                            <input type="text" class="form-control" id="contactusername" required>
+                        </div>
+                        <div class="form-group my-4">
+                            <label for="contactemail">Email</label>
+                            <input type="email" class="form-control" id="contactemail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactcomment">Your Message</label>
+                            <textarea class="form-control" rows="5" id="contactcomment" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <!-- //contact right grid -->
+        </div>
+        <!-- //contact details  -->
+    </div>
+</section>
+<!-- //contact -->
+<!-- map -->
+<div class="map px-2">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.9940307!3d40.719109700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24069f02!2sCANADA!5e0!3m2!1sen!2sin!4v1441710758555"
+            allowfullscreen></iframe>
+</div>
+<!-- //map -->
