@@ -14,29 +14,29 @@ namespace BusinessPlex.Controllers
         private Product _product = new Product();
 
         // GET: Product
-        //[HttpGet]
-        //public ActionResult Add()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
 
-        //[HttpPost]
+        [HttpPost]
         public ActionResult Add(Product product)
         {
             if (ModelState.IsValid)
             {
                 if (_productManager.AddProduct(product))
                 {
-                    ViewBag.SuccessMsg = "Saved";
+                    ViewBag.Message = "Saved";
                 }
                 else
                 {
-                    ViewBag.FailMsg = "Failed";
+                    ViewBag.Message = "Failed";
                 }
             }
             else
             {
-                ViewBag.FailMsg = "Validation Error";
+                ViewBag.Message = "Validation Error";
             }
 
             return View();
@@ -58,27 +58,36 @@ namespace BusinessPlex.Controllers
             {
                 if (_productManager.UpdateProduct(product))
                 {
-                    ViewBag.SuccessMsg = "Updated";
+                    ViewBag.Message = "Updated";
                 }
                 else
                 {
-                    ViewBag.FailMsg = "Failed";
+                    ViewBag.Message = "Failed";
                 }
             }
             else
             {
-                ViewBag.FailMsg = "Validation Error";
+                ViewBag.Message = "Validation Error";
             }
 
             return View(product);
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
-            _product.ID = 1;
-            _productManager.DeleteProduct(_product);
-
-            return View();
+            try
+            {
+                _product.ID = id;
+                if (_productManager.DeleteProduct(_product))
+                {
+                    ViewBag.AlertMsg = "Delete Successfully";
+                }
+                return RedirectToAction("Show");
+            }
+            catch
+            {
+                return RedirectToAction("Show"); ;
+            }
         }
 
         [HttpGet]
@@ -94,10 +103,10 @@ namespace BusinessPlex.Controllers
         {
             var products = _productManager.GetAll();
 
-            if (product.Code != null)
-            {
-                products = products.Where(c => c.Code.ToLower().Contains(product.Code.ToLower())).ToList();
-            }
+            //if (product.Search != null)
+            //{
+            //    products = products.Where(c => c.Search.ToLower().Contains(product.Code.ToLower())).ToList();
+            //}
             if (product.Name != null)
             {
                 products = products.Where(c => c.Name.ToLower().Contains(product.Name.ToLower())).ToList();

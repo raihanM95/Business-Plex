@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201907291952170_ProductModel.Designer.cs">
       <DependentUpon>201907291952170_ProductModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907292045469_CustomerModel.cs" />
+    <Compile Include="Migrations\201907292045469_CustomerModel.Designer.cs">
+      <DependentUpon>201907292045469_CustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907292105562_SupplierModel.cs" />
+    <Compile Include="Migrations\201907292105562_SupplierModel.Designer.cs">
+      <DependentUpon>201907292105562_SupplierModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +84,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907291952170_ProductModel.resx">
       <DependentUpon>201907291952170_ProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907292045469_CustomerModel.resx">
+      <DependentUpon>201907292045469_CustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907292105562_SupplierModel.resx">
+      <DependentUpon>201907292105562_SupplierModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

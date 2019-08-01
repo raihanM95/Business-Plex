@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 1px;
     padding-bottom: 20px;
 }
 
@@ -16,3 +16,103 @@ textarea {
     max-width: 280px;
 }
 
+/*Validation error*/
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: 1px solid red;
+}
+
+/*Header Position*/
+.h-position {
+    margin-left: 20px;
+}
+
+/*Style for <hr>'s*/
+.hr-design {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+    box-shadow: 0 -10px 10px -10px #8c8b8b inset;
+}
+
+/*Search*/
+.search-key {
+    width: 123px;
+    height: 35px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    padding: 12px 20px 12px 12px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search-key:focus {
+    width: 100%;
+}
+
+.btn-sr {
+    width: 40px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-sr:hover {
+    border: 1px solid #6A5ACD;
+    background: #4682B4;
+}
+/*End*/
+
+/*Actions CSS*/
+.action-icon {
+    margin-right: 2px;
+    color: white;
+}
+
+.action-board {
+    color: #fff;
+    text-decoration: none;
+}
+
+.action-board:hover {
+    text-decoration: none;
+}
+
+.action-btn {
+    margin: 3px;
+}
+
+.admin-action-icon{
+    margin-right: 2px;
+    color: white;
+}
+
+.admin-back-icon{
+    margin-right: 4px;
+    color: #428bca;
+}
+
+.admin-action{
+    color: #fff;
+    text-decoration: none;
+}
+
+.admin-action:hover{
+    text-decoration: none;
+}
+
+.admin-action-btn{
+    margin: 3px;
+}
+/*End*/

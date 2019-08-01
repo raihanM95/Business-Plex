@@ -1,8 +1,82 @@
-﻿
+﻿@model BusinessPlex.Models.Models.Product
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_LogInLayout.cshtml";
 }
 
-<h2>Show</h2>
+<h4 class="h-position">Products</h4>
+<hr class="hr-design">
 
+<p>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Add", "Product")'"><span class="fa fa-plus admin-action-icon"></span>Add Product</button>
+</p>
+<!-- Search form -->
+@using (Html.BeginForm())
+{
+    <p class="form-inline active-cyan-4">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "search-key", @placeholder = "Search..." }, onchange = "this.form.submit();" })
+        <button type="submit" class="btn-sr"><i class="fa fa-search"></i></button>
+    </p>
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width: 5%">SL</th>
+            <th style="width: 10%">
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th style="width: 20%">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th style="width: 15%">
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th style="width: 8%">
+                @Html.DisplayNameFor(model => model.ReorderLevel)
+            </th>
+            <th style="width: 20%">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th style="width: 10%">
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    @{ int sl = 1;}
+    @foreach (var item in Model.Products)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @(sl++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReorderLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <img width="100" height="100" src="~/CustomerImage/@Html.DisplayFor(modelItem => item.Image)" alt="Image Not Available" class="img-circle" />
+                </td>
+                <td>
+                    <p class="btn btn-primary btn-sm admin-action-btn"><span class="fa fa-pencil-square-o admin-action-icon"></span>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "admin-action" })</p>
+
+                    <p class="btn btn-danger btn-sm admin-action-btn"><span class="fa fa-trash admin-action-icon"></span>@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "admin-action", onclick = "return confirm('Are sure wants to delete?');" })</p>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>

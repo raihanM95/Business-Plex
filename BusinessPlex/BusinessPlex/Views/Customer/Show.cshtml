@@ -1,0 +1,88 @@
+﻿@model BusinessPlex.Models.Models.Customer
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_LogInLayout.cshtml";
+}
+
+<h4 class="h-position">Customers</h4>
+<hr class="hr-design">
+
+<p>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Add", "Customer")'"><span class="fa fa-user-plus admin-action-icon"></span>Add Customer</button>
+</p>
+<!-- Search form -->
+@using (Html.BeginForm())
+{
+    <p class="form-inline active-cyan-4">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "search-key", @placeholder = "Search..." }, onchange = "this.form.submit();" })
+        <button type="submit" class="btn-sr"><i class="fa fa-search"></i></button>
+    </p>
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="width: 5%">SL</th>
+            <th style="width: 10%">
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th style="width: 20%">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th style="width: 15%">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th style="width: 15%">
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th style="width: 15%">
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th style="width: 8%">
+                @Html.DisplayNameFor(model => model.LoyaltyPoint)
+            </th>
+            <th style="width: 10%">
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    
+    @{ int sl = 1;}
+    @foreach (var item in Model.Customers)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @(sl++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoyaltyPoint)
+                </td>
+                <td>
+                    <img width="100" height="100" src="~/CustomerImage/@Html.DisplayFor(modelItem => item.Image)" alt="Image Not Available" class="img-circle" />
+                </td>
+                <td>
+                    <p class="btn btn-primary btn-sm admin-action-btn"><span class="fa fa-pencil-square-o admin-action-icon"></span>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "admin-action" })</p>
+
+                    <p class="btn btn-danger btn-sm admin-action-btn"><span class="fa fa-trash admin-action-icon"></span>@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "admin-action", onclick = "return confirm('Are sure wants to delete?');" })</p>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>

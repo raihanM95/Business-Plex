@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -18,15 +20,15 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Catalog", "", "", new { area = "" }, new { @class = "" })</li>
-                        <li>@Html.ActionLink("Product", "", "", new { area = "" }, new { @class = "" })</li>
+                        <li>@Html.ActionLink("Category", "Show", "Category", new { area = "" }, new { @class = "" })</li>
+                        <li>@Html.ActionLink("Product", "Show", "Product", new { area = "" }, new { @class = "" })</li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Party <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Customer", "", "", new { area = "" }, new { @class = "" })</li>
-                        <li>@Html.ActionLink("Supplier", "", "", new { area = "" }, new { @class = "" })</li>
+                        <li>@Html.ActionLink("Customer", "Show", "Customer", new { area = "" }, new { @class = "" })</li>
+                        <li>@Html.ActionLink("Supplier", "Show", "Supplier", new { area = "" }, new { @class = "" })</li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -55,11 +57,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>
+                &copy; @DateTime.Now.Year - Business Plex | Developed by
+                <a href="" class="text-white"> Team RAM.</a>
+            </p>
         </footer>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

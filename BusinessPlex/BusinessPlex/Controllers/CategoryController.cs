@@ -14,29 +14,29 @@ namespace BusinessPlex.Controllers
         private Category _category = new Category();
 
         // GET: Category
-        //[HttpGet]
-        //public ActionResult Add()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
 
-        //[HttpPost]
+        [HttpPost]
         public ActionResult Add(Category category)
         {
             if (ModelState.IsValid)
             {
                 if (_categoryManager.AddCategory(category))
                 {
-                    ViewBag.SuccessMsg = "Saved";
+                    ViewBag.Message = "Saved";
                 }
                 else
                 {
-                    ViewBag.FailMsg = "Failed";
+                    ViewBag.Message = "Failed";
                 }
             }
             else
             {
-                ViewBag.FailMsg = "Validation Error";
+                ViewBag.Message = "Validation Error";
             }
 
             return View();
@@ -58,27 +58,36 @@ namespace BusinessPlex.Controllers
             {
                 if (_categoryManager.UpdateCategory(category))
                 {
-                    ViewBag.SuccessMsg = "Updated";
+                    ViewBag.Message = "Updated";
                 }
                 else
                 {
-                    ViewBag.FailMsg = "Failed";
+                    ViewBag.Message = "Failed";
                 }
             }
             else
             {
-                ViewBag.FailMsg = "Validation Error";
+                ViewBag.Message = "Validation Error";
             }
 
             return View(category);
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
-            _category.ID = 1;
-            _categoryManager.DeleteCategory(_category);
-
-            return View();
+            try
+            {
+                _category.ID = id;
+                if (_categoryManager.DeleteCategory(_category))
+                {
+                    ViewBag.AlertMsg = "Delete Successfully";
+                }
+                return RedirectToAction("Show");
+            }
+            catch
+            {
+                return RedirectToAction("Show"); ;
+            }
         }
 
         [HttpGet]
@@ -94,10 +103,10 @@ namespace BusinessPlex.Controllers
         {
             var categories = _categoryManager.GetAll();
 
-            if (category.Code != null)
-            {
-                categories = categories.Where(c => c.Code.ToLower().Contains(category.Code.ToLower())).ToList();
-            }
+            //if (category.Search != null)
+            //{
+            //    categories = categories.Where(c => c.Search.ToLower().Contains(category.Code.ToLower())).ToList();
+            //}
             if (category.Name != null)
             {
                 categories = categories.Where(c => c.Name.ToLower().Contains(category.Name.ToLower())).ToList();
