@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using BusinessPlex.Models;
+using BusinessPlex.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +19,22 @@ namespace BusinessPlex
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Initialize AutoMapper
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CategoryViewModel, Category>();
+                cfg.CreateMap<Category, CategoryViewModel>();
+
+                cfg.CreateMap<ProductViewModel, Product>();
+                cfg.CreateMap<Product, ProductViewModel>();
+
+                cfg.CreateMap<CustomerViewModel, Customer>();
+                cfg.CreateMap<Customer, CustomerViewModel>();
+
+                cfg.CreateMap<SupplierViewModel, Supplier>();
+                cfg.CreateMap<Supplier, SupplierViewModel>();
+            });
         }
     }
 }

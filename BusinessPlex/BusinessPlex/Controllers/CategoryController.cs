@@ -1,4 +1,6 @@
-﻿using BusinessPlex.BLL.BLL;
+﻿using AutoMapper;
+using BusinessPlex.BLL.BLL;
+using BusinessPlex.Models;
 using BusinessPlex.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace BusinessPlex.Controllers
     {
         CategoryManager _categoryManager = new CategoryManager();
         private Category _category = new Category();
+        private CategoryViewModel _categoryViewModel = new CategoryViewModel();
 
         // GET: Category
         [HttpGet]
@@ -21,10 +24,13 @@ namespace BusinessPlex.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Category category)
+        public ActionResult Add(CategoryViewModel categoryViewModel)
         {
             if (ModelState.IsValid)
             {
+                Category category = new Category();
+                category = Mapper.Map<Category>(categoryViewModel);
+
                 if (_categoryManager.AddCategory(category))
                 {
                     ViewBag.Message = "Saved";
@@ -43,19 +49,23 @@ namespace BusinessPlex.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int id)
         {
-            _category.ID = Id;
+            _category.ID = id;
             var category = _categoryManager.GetByID(_category);
+            _categoryViewModel = Mapper.Map<CategoryViewModel>(category);
 
-            return View(category);
+            return View(_categoryViewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Category category)
+        public ActionResult Edit(CategoryViewModel categoryViewModel)
         {
             if (ModelState.IsValid)
             {
+                Category category = new Category();
+                category = Mapper.Map<Category>(categoryViewModel);
+
                 if (_categoryManager.UpdateCategory(category))
                 {
                     ViewBag.Message = "Updated";
@@ -70,7 +80,7 @@ namespace BusinessPlex.Controllers
                 ViewBag.Message = "Validation Error";
             }
 
-            return View(category);
+            return View(categoryViewModel);
         }
 
         public ActionResult Delete(int id)
@@ -78,6 +88,7 @@ namespace BusinessPlex.Controllers
             try
             {
                 _category.ID = id;
+
                 if (_categoryManager.DeleteCategory(_category))
                 {
                     ViewBag.AlertMsg = "Delete Successfully";
@@ -93,27 +104,26 @@ namespace BusinessPlex.Controllers
         [HttpGet]
         public ActionResult Show()
         {
-            _category.Categories = _categoryManager.GetAll();
+            _categoryViewModel.Categories = _categoryManager.GetAll();
 
-            return View(_category);
+            return View(_categoryViewModel);
         }
 
         [HttpPost]
-        public ActionResult Show(Category category)
+        public ActionResult Show(CategoryViewModel categoryViewModel)
         {
             var categories = _categoryManager.GetAll();
 
-            //if (category.Search != null)
-            //{
-            //    categories = categories.Where(c => c.Search.ToLower().Contains(category.Code.ToLower())).ToList();
-            //}
-            if (category.Name != null)
+            if (categoryViewModel.Name != null)
             {
+                Category category = new Category();
+                category = Mapper.Map<Category>(categoryViewModel);
+
                 categories = categories.Where(c => c.Name.ToLower().Contains(category.Name.ToLower())).ToList();
             }
-            
-            category.Categories = categories;
-            return View(category);
+
+            categoryViewModel.Categories = categories;
+            return View(categoryViewModel);
         }
     }
 }

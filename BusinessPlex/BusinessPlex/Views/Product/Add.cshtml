@@ -1,4 +1,4 @@
-﻿@model BusinessPlex.Models.Models.Product
+﻿@model BusinessPlex.Models.ProductViewModel
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_LogInLayout.cshtml";
@@ -38,11 +38,11 @@
 
         <div class="form-group">
                 @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control", @placeholder = "" } })
-                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CategoryId, Model.CategorySelectListItems, "--Select Category--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ReorderLevel, htmlAttributes: new { @class = "control-label col-md-2" })

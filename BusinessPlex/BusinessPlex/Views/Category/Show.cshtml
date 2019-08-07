@@ -1,4 +1,4 @@
-﻿@model BusinessPlex.Models.Models.Category
+﻿@model BusinessPlex.Models.CategoryViewModel
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_LogInLayout.cshtml";
@@ -14,7 +14,7 @@
 @using (Html.BeginForm())
 {
     <p class="form-inline active-cyan-4">
-        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "search-key", @placeholder = "Search..." }, onchange = "this.form.submit();" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "search-key", @placeholder = "Search name..." }, onchange = "this.form.submit();" })
         <button type="submit" class="btn-sr"><i class="fa fa-search"></i></button>
     </p>
 }

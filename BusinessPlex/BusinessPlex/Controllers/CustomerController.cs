@@ -1,7 +1,10 @@
-﻿using BusinessPlex.BLL.BLL;
+﻿using AutoMapper;
+using BusinessPlex.BLL.BLL;
+using BusinessPlex.Models;
 using BusinessPlex.Models.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +15,7 @@ namespace BusinessPlex.Controllers
     {
         CustomerManager _customerManager = new CustomerManager();
         private Customer _customer = new Customer();
+        private CustomerViewModel _customerViewModel = new CustomerViewModel();
 
         // GET: Customer
         [HttpGet]
@@ -21,10 +25,18 @@ namespace BusinessPlex.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Customer customer)
+        public ActionResult Add(CustomerViewModel customerViewModel)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(customerViewModel.ImageFile.FileName);
+                customerViewModel.Image = customerViewModel.Code + fileName + System.IO.Path.GetExtension(customerViewModel.ImageFile.FileName);
+                fileName = "~/images/CustomerImages/" + customerViewModel.Code + fileName + System.IO.Path.GetExtension(customerViewModel.ImageFile.FileName);
+                customerViewModel.ImageFile.SaveAs(Server.MapPath(fileName));
+
+                Customer customer = new Customer();
+                customer = Mapper.Map<Customer>(customerViewModel);
+
                 if (_customerManager.AddCustomer(customer))
                 {
                     ViewBag.Message = "Saved";
@@ -43,19 +55,28 @@ namespace BusinessPlex.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int id)
         {
-            _customer.ID = Id;
+            _customer.ID = id;
             var customer = _customerManager.GetByID(_customer);
+            _customerViewModel = Mapper.Map<CustomerViewModel>(customer);
 
-            return View(customer);
+            return View(_customerViewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Customer customer)
+        public ActionResult Edit(CustomerViewModel customerViewModel)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(customerViewModel.ImageFile.FileName);
+                customerViewModel.Image = customerViewModel.Code + fileName + System.IO.Path.GetExtension(customerViewModel.ImageFile.FileName);
+                fileName = "~/images/CustomerImages/" + customerViewModel.Code + fileName + System.IO.Path.GetExtension(customerViewModel.ImageFile.FileName);
+                customerViewModel.ImageFile.SaveAs(Server.MapPath(fileName));
+
+                Customer customer = new Customer();
+                customer = Mapper.Map<Customer>(customerViewModel);
+
                 if (_customerManager.UpdateCustomer(customer))
                 {
                     ViewBag.Message = "Updated";
@@ -71,7 +92,7 @@ namespace BusinessPlex.Controllers
                 ViewBag.Message = "Validation Error";
             }
 
-            return View(customer);
+            return View(customerViewModel);
         }
 
         public ActionResult Delete(int id)
@@ -79,6 +100,7 @@ namespace BusinessPlex.Controllers
             try
             {
                 _customer.ID = id;
+
                 if (_customerManager.DeleteCustomer(_customer))
                 {
                     ViewBag.AlertMsg = "Delete Successfully";
@@ -94,27 +116,26 @@ namespace BusinessPlex.Controllers
         [HttpGet]
         public ActionResult Show()
         {
-            _customer.Customers = _customerManager.GetAll();
+            _customerViewModel.Customers = _customerManager.GetAll();
 
-            return View(_customer);
+            return View(_customerViewModel);
         }
 
         [HttpPost]
-        public ActionResult Show(Customer customer)
+        public ActionResult Show(CustomerViewModel customerViewModel)
         {
             var customers = _customerManager.GetAll();
 
-            //if (customer.Search != null)
-            //{
-            //    customers = customers.Where(c => c.Search.ToLower().Contains(customer.Code.ToLower())).ToList();
-            //}
-            if (customer.Name != null)
+            if (customerViewModel.Name != null)
             {
+                Customer customer = new Customer();
+                customer = Mapper.Map<Customer>(customerViewModel);
+
                 customers = customers.Where(c => c.Name.ToLower().Contains(customer.Name.ToLower())).ToList();
             }
 
-            customer.Customers = customers;
-            return View(customer);
+            customerViewModel.Customers = customers;
+            return View(customerViewModel);
         }
     }
 }

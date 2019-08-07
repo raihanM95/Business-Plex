@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,36 +10,24 @@ namespace BusinessPlex.Models.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Code")]
-        [Required(ErrorMessage = "Please enter Code")]
+        [Required]
         [StringLength(10, MinimumLength = 3)]
         public string Code { get; set; }
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "Please enter Name")]
+        [Required]
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
-
-        [Display(Name = "Address")]
+        
         public string Address { get; set; }
-
-        [Display(Name = "Email")]
-        [Required(ErrorMessage = "Please enter Email")]
+        
+        [Required]
         public string Email { get; set; }
 
-        [Display(Name = "Contact")]
-        [Required(ErrorMessage = "Please enter Contact No")]
+        [Required]
         public string Contact { get; set; }
 
-        [Display(Name = "Contact Person")]
         public string ContactPerson { get; set; }
 
-        [Display(Name = "Image")]
         public string Image { get; set; }
-
-        [NotMapped]
-        public string Search { get; set; }
-        [NotMapped]
-        public List<Supplier> Suppliers { get; set; }
     }
 }

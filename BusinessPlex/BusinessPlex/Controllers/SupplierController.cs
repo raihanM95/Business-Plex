@@ -1,7 +1,10 @@
-﻿using BusinessPlex.BLL.BLL;
+﻿using AutoMapper;
+using BusinessPlex.BLL.BLL;
+using BusinessPlex.Models;
 using BusinessPlex.Models.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +15,7 @@ namespace BusinessPlex.Controllers
     {
         SupplierManager _supplierManager = new SupplierManager();
         private Supplier _supplier = new Supplier();
+        private SupplierViewModel _supplierViewModel = new SupplierViewModel();
 
         // GET: Supplier
         [HttpGet]
@@ -21,10 +25,18 @@ namespace BusinessPlex.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Supplier supplier)
+        public ActionResult Add(SupplierViewModel supplierViewModel)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(supplierViewModel.ImageFile.FileName);
+                supplierViewModel.Image = supplierViewModel.Code + fileName + System.IO.Path.GetExtension(supplierViewModel.ImageFile.FileName);
+                fileName = "~/images/SupplierLogo/" + supplierViewModel.Code + fileName + System.IO.Path.GetExtension(supplierViewModel.ImageFile.FileName);
+                supplierViewModel.ImageFile.SaveAs(Server.MapPath(fileName));
+
+                Supplier supplier = new Supplier();
+                supplier = Mapper.Map<Supplier>(supplierViewModel);
+
                 if (_supplierManager.AddSupplier(supplier))
                 {
                     ViewBag.Message = "Saved";
@@ -43,19 +55,28 @@ namespace BusinessPlex.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int id)
         {
-            _supplier.ID = Id;
+            _supplier.ID = id;
             var supplier = _supplierManager.GetByID(_supplier);
+            _supplierViewModel = Mapper.Map<SupplierViewModel>(supplier);
 
-            return View(supplier);
+            return View(_supplierViewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Supplier supplier)
+        public ActionResult Edit(SupplierViewModel supplierViewModel)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(supplierViewModel.ImageFile.FileName);
+                supplierViewModel.Image = supplierViewModel.Code + fileName + System.IO.Path.GetExtension(supplierViewModel.ImageFile.FileName);
+                fileName = "~/images/SupplierLogo/" + supplierViewModel.Code + fileName + System.IO.Path.GetExtension(supplierViewModel.ImageFile.FileName);
+                supplierViewModel.ImageFile.SaveAs(Server.MapPath(fileName));
+
+                Supplier supplier = new Supplier();
+                supplier = Mapper.Map<Supplier>(supplierViewModel);
+
                 if (_supplierManager.UpdateSupplier(supplier))
                 {
                     ViewBag.Message = "Updated";
@@ -70,7 +91,7 @@ namespace BusinessPlex.Controllers
                 ViewBag.Message = "Validation Error";
             }
 
-            return View(supplier);
+            return View(supplierViewModel);
         }
 
         public ActionResult Delete(int id)
@@ -93,27 +114,26 @@ namespace BusinessPlex.Controllers
         [HttpGet]
         public ActionResult Show()
         {
-            _supplier.Suppliers = _supplierManager.GetAll();
+            _supplierViewModel.Suppliers = _supplierManager.GetAll();
 
-            return View(_supplier);
+            return View(_supplierViewModel);
         }
 
         [HttpPost]
-        public ActionResult Show(Supplier supplier)
+        public ActionResult Show(SupplierViewModel supplierViewModel)
         {
-            var Suppliers = _supplierManager.GetAll();
+            var suppliers = _supplierManager.GetAll();
 
-            //if (supplier.Search != null)
-            //{
-            //    Suppliers = Suppliers.Where(c => c.Search.ToLower().Contains(supplier.Code.ToLower())).ToList();
-            //}
-            if (supplier.Name != null)
+            if (supplierViewModel.Name != null)
             {
-                Suppliers = Suppliers.Where(c => c.Name.ToLower().Contains(supplier.Name.ToLower())).ToList();
+                Supplier supplier = new Supplier();
+                supplier = Mapper.Map<Supplier>(supplierViewModel);
+
+                suppliers = suppliers.Where(c => c.Name.ToLower().Contains(supplier.Name.ToLower())).ToList();
             }
 
-            supplier.Suppliers = Suppliers;
-            return View(supplier);
+            supplierViewModel.Suppliers = suppliers;
+            return View(supplierViewModel);
         }
     }
 }
