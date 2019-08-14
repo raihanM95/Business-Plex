@@ -75,7 +75,7 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    <img width="100" height="100" src="~/images/SupplierLogo/" alt="Image Not Available" class="img-circle" />
+                    <img width="100" height="100" src="~/images/SupplierLogo/@Html.DisplayFor(modelItem => item.Image)" alt="Image Not Available" class="img-circle" />
                 </td>
                 <td>
                     <p class="btn btn-primary btn-sm admin-action-btn"><span class="fa fa-pencil-square-o admin-action-icon"></span>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "admin-action" })</p>

@@ -1,0 +1,299 @@
+﻿@model BusinessPlex.Models.PurchaseViewModel
+@{
+    ViewBag.Title = "Entry";
+    Layout = "~/Views/Shared/_LogInLayout.cshtml";
+}
+
+@using (Html.BeginForm("Entry", "Purchase", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 class="h-position">Entry Purchase</h4>
+        <hr class="hr-design">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="border border-primary">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-4" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @id = "date", @class = "form-control" }, @value = DateTime.Now })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.InvoiceNo, new { @class = "control-label col-md-4" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.InvoiceNo, new { htmlAttributes = new { @id = "invoiceNo", @class = "form-control", @placeholder = "Enter invoice no" } })
+                    @Html.ValidationMessageFor(model => model.InvoiceNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SupplierId, new { @class = "control-label col-md-4" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.SupplierId, Model.SupplierSelectListItems, "---Select---", new { @id = "supplier", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Purchase Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProductId, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.ProductId, Model.ProductSelectListItems, "---Select---", new { @id = "product", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @id = "code", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ManufacturedDate, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.ManufacturedDate, new { htmlAttributes = new { @id = "manufacturedDate", @class = "form-control" }, @value = DateTime.Now })
+                                @Html.ValidationMessageFor(model => model.ManufacturedDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ExpireDate, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.ExpireDate, new { htmlAttributes = new { @id = "expireDate", @class = "form-control" }, @value = DateTime.Now })
+                                @Html.ValidationMessageFor(model => model.ExpireDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Remarks, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @id = "remarks", @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @id = "quantity", @class = "form-control", @placeholder = "Enter quantity" } })
+                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UnitPrice, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @id = "unitPrice", @class = "form-control", @placeholder = "Enter unit price" } })
+                                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TotalPrice, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @id = "totalPrice", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PreviousCostPrice, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.PreviousCostPrice, new { htmlAttributes = new { @id = "previousCostPrice", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.PreviousCostPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PreviousMRP, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.PreviousMRP, new { htmlAttributes = new { @id = "previousMRP", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.PreviousMRP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MRP, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.MRP, new { htmlAttributes = new { @id = "mrp", @class = "form-control", @placeholder = "Enter new MRP" } })
+                                @Html.ValidationMessageFor(model => model.MRP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-4">
+                                <input type="button" id="addButton" value="Add" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ManufacturedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExpireDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UnitPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MRP)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Remarks)
+                            </th>
+
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="tbProducts"></tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-11 col-md-1">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        $('#product').change(() => {
+
+            var productId = $('#product').val();
+            var jsonData = { productId: productId };
+
+            $.ajax({
+
+                url: "/purchase/getproductcode",
+                type: "POST",
+                data: jsonData,
+                success: (product) => {
+                    $("#code").val("" + product.Code);
+                },
+
+                error: (response) => {
+
+                }
+            });
+
+            $.ajax({
+
+                url: "/purchase/getbyprevious",
+                type: "POST",
+                data: jsonData,
+                success: (product) => {
+                    $("#previousCostPrice").val("" + product.UnitPrice);
+                    $("#previousMRP").val("" + product.MRP);
+                },
+
+                error: (response) => {
+
+                }
+            });
+        });
+
+        $('#unitPrice').keyup(() => {
+            var quantity = $('#quantity').val();
+            var unitPrice = $('#unitPrice').val();
+            $('#totalPrice').val(quantity * unitPrice);
+
+            $('#mrp').val(parseInt(unitPrice) + parseFloat(unitPrice * 0.25));
+        });
+
+        var index = 0;
+        var sl = 1;
+        $("#addButton").click(() => {
+            var purchase = getPurchaseRecord();
+            var purchaseRow = addRow(purchase);
+
+            $("#tbProducts").append(purchaseRow);
+            index++;
+            sl++;
+        });
+
+        function getPurchaseRecord() {
+            //var date = $('#date').val();
+            //var invoiceNo = $('#invoiceNo').val();
+            //var supplier = $('#supplier').val();
+            var product = $('#product').val();
+            var code = $("#code").val();
+            var manufacturedDate = $("#manufacturedDate").val();
+            var expireDate = $("#expireDate").val();
+            var quantity = $("#quantity").val();
+            var unitPrice = $("#unitPrice").val();
+            var totalPrice = $("#totalPrice").val();
+            var mrp = $("#mrp").val();
+            var remarks = $("#remarks").val();
+
+            return { ProductId: product, Code: code, ManufacturedDate: manufacturedDate, ExpireDate: expireDate, Quantity: quantity, UnitPrice: unitPrice, TotalPrice: totalPrice, MRP: mrp, Remarks: remarks };
+        }
+
+        function addRow(purchase) {
+
+            var productHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].ProductId' value='" + purchase.ProductId + "'/>";
+            var mfdHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].ManufacturedDate' value='" + purchase.ManufacturedDate + "'/>";
+            var expiredHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].ExpireDate' value='" + purchase.ExpireDate + "'/>";
+            var quantityHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].Quantity' value='" + purchase.Quantity + "'/>";
+            var uPriceHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].UnitPrice' value='" + purchase.UnitPrice + "'/>";
+            var tPriceHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].TotalPrice' value='" + purchase.TotalPrice + "'/>";
+            var mrpHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].MRP' value='" + purchase.MRP + "'/>";
+            var remarksHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].Remarks' value='" + purchase.Remarks + "'/>";
+
+            var tr = "<tr>";
+            var serialcell = "<td>" + sl + "</td>";
+            var codeCell = "<td>" + productHidden + purchase.Code + "</td>";
+            var mfdCell = "<td>" + mfdHidden + purchase.ManufacturedDate + "</td>";
+            var expiredCell = "<td>" + expiredHidden + purchase.ExpireDate + "</td>";
+            var quantityCell = "<td>" + quantityHidden + purchase.Quantity + "</td>";
+            var uPriceCell = "<td>" + uPriceHidden + purchase.UnitPrice + "</td>";
+            var tPriceCell = "<td>" + tPriceHidden + purchase.TotalPrice + "</td>";
+            var mrpCell = "<td>" + mrpHidden + purchase.MRP + "</td>";
+            var remarksCell = "<td>" + remarksHidden + purchase.Remarks + "</td>";
+            var trend = "</tr>";
+
+            var row = tr + serialcell + codeCell + mfdCell + expiredCell + quantityCell + uPriceCell + tPriceCell + mrpCell + remarksCell + trend;
+
+            return row;
+        }
+
+    </script>
+}

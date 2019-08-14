@@ -14,5 +14,7 @@ namespace BusinessPlex.DatabaseContext.DatabaseContext
         public DbSet<Product> Products { set; get; }
         public DbSet<Customer> Customers { set; get; }
         public DbSet<Supplier> Suppliers { set; get; }
+        public DbSet<PurchaseSupplier> PurchaseSuppliers { get; set; }
+        public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
     }
 }

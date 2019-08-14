@@ -75,6 +75,12 @@ namespace BusinessPlex.Controllers
             var product = _productManager.GetByID(_product);
             _productViewModel = Mapper.Map<ProductViewModel>(product);
 
+            _productViewModel.CategorySelectListItems = _categoryManager.GetAll().Select(c => new SelectListItem()
+            {
+                Value = c.ID.ToString(),
+                Text = c.Name
+            });
+
             return View(_productViewModel);
         }
 

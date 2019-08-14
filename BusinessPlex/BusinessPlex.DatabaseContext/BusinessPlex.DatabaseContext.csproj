@@ -65,6 +65,14 @@
     <Compile Include="Migrations\201907292105562_SupplierModel.Designer.cs">
       <DependentUpon>201907292105562_SupplierModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908070707569_PurchaseSupplierModel.cs" />
+    <Compile Include="Migrations\201908070707569_PurchaseSupplierModel.Designer.cs">
+      <DependentUpon>201908070707569_PurchaseSupplierModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908070718349_PurchaseDetailsModel.cs" />
+    <Compile Include="Migrations\201908070718349_PurchaseDetailsModel.Designer.cs">
+      <DependentUpon>201908070718349_PurchaseDetailsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -90,6 +98,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907292105562_SupplierModel.resx">
       <DependentUpon>201907292105562_SupplierModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070707569_PurchaseSupplierModel.resx">
+      <DependentUpon>201908070707569_PurchaseSupplierModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070718349_PurchaseDetailsModel.resx">
+      <DependentUpon>201908070718349_PurchaseDetailsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
