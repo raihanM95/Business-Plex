@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <title>@ViewBag.Title - Business Plex</title>
+    <link rel="icon" href="favicon.ico">
+
+    <meta name="description" content="Business Plex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Stock Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    <meta name="keywords" content="Business Plex Responsive web template, Bootstrap web templates, Flat web templates, Android Compatible web template,
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -27,20 +31,19 @@
         }
         /* //for image slides */
     </style>
-
+    
     <!-- Bootstrap Core CSS -->
-    <!-- <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
-    <link href="~/Content/homecss/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/template/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- popup box -->
-    <link href="~/Content/homecss/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/template/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom CSS -->
-    <link href="~/Content/homecss/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/template/style.css" rel='stylesheet' type='text/css' />
     <!-- font-awesome icons -->
-    <link href="~/Content/homecss/fontawesome-all.min.css" rel="stylesheet">
-    <!-- //Custom Theme files -->
+    <link href="~/Content/template/fontawesome-all.min.css" rel="stylesheet">
+    
     <!-- webfonts -->
-    <link href="//fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <!-- //webfonts -->
 </head>
@@ -66,95 +69,12 @@
                         <li class="nav-item active  mr-lg-3">
                             @Html.ActionLink("Home", "", "", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                        <li class="nav-item mr-lg-3">
-                            @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="#" data-toggle="dropdown" class="nav-link">
-                                Pages
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu multi-level" role="menu">
-                                <li class="nav-item">
-                                    <a href="portfolio.html" class="nav-link">Portfolio</a>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a tabindex="-1" href="#" class="nav-link">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-submenu">
-                                            <a href="#" class="nav-link">Layout 1</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="blog3_style1.html" class="nav-link">Left Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog3_style2.html" class="nav-link">Right Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog3_style3.html" class="nav-link">Without Sidebar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#" class="nav-link">Layout 2</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="blog2_style1.html" class="nav-link">Left Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog2_style2.html" class="nav-link">Right Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog2_style3.html" class="nav-link">Without Sidebar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#" class="nav-link">Layout 3</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="blog_row_style1.html" class="nav-link">Left Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog_row_style2.html" class="nav-link">Right Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog_row_style3.html" class="nav-link">Without Sidebar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#" class="nav-link">Layout 4</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="blog_col_style1.html" class="nav-link">Left Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog_col_style2.html" class="nav-link">Right Sidebar</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="blog_col_style3.html" class="nav-link">Without Sidebar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="soon.html" class="nav-link">Coming soon</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="maintenance.html" class="nav-link">Maintenance</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="error.html" class="nav-link">404</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="typo.html" class="nav-link">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                         <li class="nav-item mr-lg-3">
                             @Html.ActionLink("Services", "", "", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item mr-lg-3">
+                            @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
@@ -206,22 +126,22 @@
                         <ul class="list-agileits">
                             <li>
                                 <a href="#">
-                                    quality resourcing
+                                    business solution
                                 </a>
                             </li>
                             <li class="my-3">
                                 <a href="#">
-                                    inventory tracking
+                                    ERP system
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="#">
-                                    financial planning
+                                    attendance system
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    budget friendly
+                                    automation system
                                 </a>
                             </li>
                         </ul>
@@ -365,12 +285,9 @@
     <!-- //Register modal -->
     
     <!-- js -->
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
-    <script src="~/Scripts/homejs/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/template/jquery-2.2.3.min.js"></script>
     <!-- magnific-popup -->
-    <script src="~/Scripts/homejs/jquery.magnific-popup.js"></script>
+    <script src="~/Scripts/template/jquery.magnific-popup.js"></script>
     <script>
         //script for magnific pop up (about section)
         $(document).ready(function () {
@@ -388,55 +305,14 @@
         });
     </script>
     <!-- move-top -->
-    <script src="~/Scripts/homejs/move-top.js"></script>
+    <script src="~/Scripts/template/move-top.js"></script>
     <!-- easing -->
-    <script src="~/Scripts/homejs/easing.js"></script>
+    <script src="~/Scripts/template/easing.js"></script>
     <!-- smooth scroll -->
-    <script src="~/Scripts/homejs/SmoothScroll.min.js"></script>
+    <script src="~/Scripts/template/SmoothScroll.min.js"></script>
     <!-- necessary snippets for few javascript files -->
-    <script src="~/Scripts/homejs/stock.js"></script>
+    <script src="~/Scripts/template/stock.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="~/Scripts/homejs/bootstrap.js "></script>
+    <script src="~/Scripts/template/bootstrap.js "></script>
 </body>
 </html>
-
-
-@*<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
-</html>*@
