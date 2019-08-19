@@ -35,6 +35,9 @@ namespace BusinessPlex.Models
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
+        public decimal PreviousCostPrice { get; set; }
+        public decimal PreviousMRP { get; set; }
+
         public IEnumerable<SelectListItem> CategorySelectListItems { get; set; }
 
         public List<Product> Products { get; set; }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3072CC3A-27FC-4918-8DDF-CB75562CB134}</ProjectGuid>
+    <ProjectGuid>{2B94EE50-CFA3-405F-9EE6-59F61ECB6820}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessPlex.BLL</RootNamespace>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessPlex">
+      <HintPath>..\BusinessPlex\bin\BusinessPlex.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,16 +49,16 @@
     <Compile Include="BLL\ProductManager.cs" />
     <Compile Include="BLL\PurchaseManager.cs" />
     <Compile Include="BLL\SupplierManager.cs" />
+    <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessPlex.Models\BusinessPlex.Models.csproj">
       <Project>{4f642d63-edba-45b5-9bbf-305a1b9d5f6f}</Project>
       <Name>BusinessPlex.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\BusinessPlex.Repository\BusinessPlex.Repository.csproj">
-      <Project>{268fbcd6-8c19-4cc9-b68a-9eeb6ecff046}</Project>
+      <Project>{1c123c1c-76b3-468e-9068-ef9d8a8ef852}</Project>
       <Name>BusinessPlex.Repository</Name>
     </ProjectReference>
   </ItemGroup>

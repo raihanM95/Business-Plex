@@ -13,8 +13,6 @@ namespace BusinessPlex.Controllers
     {
         PurchaseManager _purchaseManager = new PurchaseManager();
         private PurchaseSupplier _purchaseSupplier = new PurchaseSupplier();
-        private PurchaseDetails _purchaseDetails = new PurchaseDetails();
-        private PurchaseViewModel _purchaseViewModel = new PurchaseViewModel();
         SupplierManager _supplierManager = new SupplierManager();
         ProductManager _productManager = new ProductManager();
 
@@ -41,54 +39,45 @@ namespace BusinessPlex.Controllers
         [HttpPost]
         public ActionResult Entry(PurchaseViewModel purchaseViewModel)
         {
-            var purchaseDetails = new List<PurchaseDetails>();
-            var purchaseSupplier = new PurchaseSupplier();
-
             if (ModelState.IsValid)
             {
-                purchaseSupplier.Date = purchaseViewModel.Date;
-                purchaseSupplier.InvoiceNo = purchaseViewModel.InvoiceNo;
-                purchaseSupplier.SupplierId = Convert.ToInt32(purchaseViewModel.SupplierId);
-
-                foreach (var details in purchaseViewModel.PurchaseDetails)
+                _purchaseSupplier.InvoiceNo = purchaseViewModel.InvoiceNo;
+                _purchaseSupplier.Date = purchaseViewModel.Date;
+                _purchaseSupplier.SupplierId = purchaseViewModel.SupplierId;
+                _purchaseSupplier.PurchaseDetails = purchaseViewModel.PurchaseDetails;
+                if (_purchaseManager.Entry(_purchaseSupplier))
                 {
-                    details.PurchaseSupplierId = purchaseSupplier.ID;
-                    
-                    purchaseDetails.Add(details);
+                    ViewBag.Message = "Saved";
+
+                    purchaseViewModel.SupplierSelectListItems = _supplierManager.GetAll().Select(c => new SelectListItem()
+                    {
+                        Value = c.ID.ToString(),
+                        Text = c.Name
+                    });
+
+                    purchaseViewModel.ProductSelectListItems = _productManager.GetAll().Select(c => new SelectListItem()
+                    {
+                        Value = c.ID.ToString(),
+                        Text = c.Name
+                    });
+
+                    return View(purchaseViewModel);
                 }
             }
-
-            _purchaseManager.Entry(purchaseSupplier, purchaseDetails);
-
-            purchaseViewModel.SupplierSelectListItems = _supplierManager.GetAll().Select(c => new SelectListItem()
-            {
-                Value = c.ID.ToString(),
-                Text = c.Name
-            });
-
-            purchaseViewModel.ProductSelectListItems = _productManager.GetAll().Select(c => new SelectListItem()
-            {
-                Value = c.ID.ToString(),
-                Text = c.Name
-            });
-
             return View(purchaseViewModel);
         }
 
-        public JsonResult GetProductCode(int productId)
+        public JsonResult GetProductHistory(int productId)
         {
-            Product _product = new Product();
-            _product.ID = productId;
-            var product = _productManager.GetByID(_product);
-
-            return Json(product, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetByPrevious(int productId)
-        {
-            _purchaseDetails.ProductId = productId;
-            var previous = _purchaseManager.GetByPrevious(_purchaseDetails);
-            return Json(previous, JsonRequestBehavior.AllowGet);
+            ProductViewModel model = new ProductViewModel();
+            Product product = new Product();
+            product.ID = productId;
+            var aProduct = _productManager.GetByID(product);
+            string productCode = aProduct.Code;
+            
+            model = _purchaseManager.GetByPrevious(product);
+            model.Code = productCode;
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

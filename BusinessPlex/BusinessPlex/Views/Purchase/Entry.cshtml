@@ -53,10 +53,10 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-3" })
+                            @Html.LabelFor(model => model.ProductCode, new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @id = "code", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @id = "code", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -79,8 +79,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Remarks, new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", @placeholder = "" })
-                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @id = "remarks", @class = "text-danger" })
+                                @Html.TextAreaFor(model => model.Remarks, new { @id = "remarks", @class = "form-control", @placeholder = "" })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                         <tr>
                             <th>SL</th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Code)
+                                @Html.DisplayNameFor(model => model.ProductCode)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.ManufacturedDate)
@@ -179,15 +179,33 @@
                         </tr>
 
                     </thead>
-                    <tbody id="tbProducts"></tbody>
-
+                    <tbody id="productTableBody">
+                        @*@if (Model != null && Model.PurchaseDetails.Count > 0)
+                        {
+                            int sl = 1;
+                            foreach (var product in Model.PurchaseDetails)
+                            {
+                                <tr>
+                                    <td>@(sl++)</td>
+                                    <td>@product.Product.Code</td>
+                                    <td>@product.ManufacturedDate</td>
+                                    <td>@product.ExpireDate</td>
+                                    <td>@product.Quantity</td>
+                                    <td>@product.UnitPrice</td>
+                                    <td>@product.TotalPrice</td>
+                                    <td>@product.MRP</td>
+                                    <td>@product.Remarks</td>
+                                </tr>
+                            }
+                        }*@
+                    </tbody>
                 </table>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6 col-md-offset-11 col-md-1">
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="submit" id="purchaseSubmitButton" value="Submit" class="btn btn-primary" />
             </div>
 
         </div>
@@ -196,104 +214,137 @@
 
 @section Scripts{
     <script>
-        $('#product').change(() => {
-
-            var productId = $('#product').val();
-            var jsonData = { productId: productId };
-
-            $.ajax({
-
-                url: "/purchase/getproductcode",
-                type: "POST",
-                data: jsonData,
-                success: (product) => {
-                    $("#code").val("" + product.Code);
-                },
-
-                error: (response) => {
-
-                }
-            });
+        // Show Product Scripts
+        $("#product").change(function () {
+            debugger
+            var productId = $("#product").val();
 
             $.ajax({
-
-                url: "/purchase/getbyprevious",
+                url: "/purchase/getproducthistory",
                 type: "POST",
-                data: jsonData,
-                success: (product) => {
-                    $("#previousCostPrice").val("" + product.UnitPrice);
-                    $("#previousMRP").val("" + product.MRP);
-                },
-
-                error: (response) => {
-
+                data: { productId: productId },
+                success: function (model) {
+                    $("#code").val(model.Code);
+                    $("#previousCostPrice").val(model.PreviousCostPrice);
+                    $("#previousMRP").val(model.PreviousMRP);
                 }
-            });
+            })
+        })
+
+        $("#unitPrice").keyup(function () {
+
+            var quantity = $("#quantity").val();
+            if (quantity !== undefined || quantity.length == 0) {
+                var unitPrice = $("#unitPrice").val();
+                var totalPrice = unitPrice * quantity;
+                $("#totalPrice").val(totalPrice);
+                
+                var costingAmount = (unitPrice * 25) / 100;
+                var newMRP = parseFloat(unitPrice) + parseFloat(costingAmount);
+                $("#mrp").val(newMRP);
+            }
+        })
+
+        $("#quantity").keyup(function () {
+            var unitPrice = $("#unitPrice").val();
+            if (unitPrice !== undefined || quantity.length == 0) {
+                var quantity = $("#quantity").val();
+                var totalPrice = unitPrice * quantity;
+                $("#totalPrice").val(totalPrice);
+            }
+        })
+
+        
+
+
+        // Table JS Code Scripts
+        $("#addButton").click(function () {
+            addProductsInList();
         });
 
-        $('#unitPrice').keyup(() => {
-            var quantity = $('#quantity').val();
-            var unitPrice = $('#unitPrice').val();
-            $('#totalPrice').val(quantity * unitPrice);
+        function addProductsInList() {
 
-            $('#mrp').val(parseInt(unitPrice) + parseFloat(unitPrice * 0.25));
-        });
+            var getProducts = getProductsFromTextBox();
 
-        var index = 0;
-        var sl = 1;
-        $("#addButton").click(() => {
-            var purchase = getPurchaseRecord();
-            var purchaseRow = addRow(purchase);
+            var index = $("#productTableBody").children("tr").length;
 
-            $("#tbProducts").append(purchaseRow);
-            index++;
-            sl++;
-        });
+            var sl = index;
+            var indexCell = "<td style='display:none'><input type='hidden' id='index" + index + "' name='PurchaseDetails.index' value='" + index + "' /></td>";
+            var slCell = "<td>" + (++sl) + "</td>";
+            var productCell = "<td style='display:none'><input type='hidden' id='product" + index + "' name='PurchaseDetails[" + index + "].ProductId' value='" + getProducts.ProductId + "'/></td>";
+            var productCodeCell = "<td>" + getProducts.ProductCode + "</td>";
+            var manufactureDateCell = "<td><input type='hidden' id='manufactureDate" + index + "' name='PurchaseDetails[" + index + "].ManufacturedDate' value='" + getProducts.ManufacturedDate + "' />" + getProducts.ManufacturedDate + "</td>";
+            var expireDateCell = "<td><input type='hidden' id='expireDate" + index + "' name='PurchaseDetails[" + index + "].ExpireDate' value='" + getProducts.ExpireDate + "' />" + getProducts.ExpireDate + "</td>";
+            var quantityCell = "<td><input type='hidden' id='quantity" + index + "' name='PurchaseDetails[" + index + "].Quantity' value='" + getProducts.Quantity + "' />" + getProducts.Quantity + "</td>";
+            var unitPriceCell = "<td><input type='hidden' id='unitPrice" + index + "' name='PurchaseDetails[" + index + "].UnitPrice' value='" + getProducts.UnitPrice + "' />" + getProducts.UnitPrice + "</td>";
+            var totalPriceCell = "<td><input type='hidden' id='totalPrice" + index + "' name='PurchaseDetails[" + index + "].TotalPrice' value='" + getProducts.TotalPrice + "' />" + getProducts.TotalPrice + "</td>";
+            var mrpCell = "<td><input type='hidden' id='newMRP" + index + "' name='PurchaseDetails[" + index + "].MRP' value='" + getProducts.MRP + "' />" + getProducts.MRP + "</td>";
+            var remarksCell = "<td><input type='hidden' id='remark" + index + "' name='PurchaseDetails[" + index + "].Remarks' value='" + getProducts.Remarks + "' />" + getProducts.Remarks + "</td>";
+            
+            var deleteCell = "<td><a id='deleteCell' class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></a></td>";
 
-        function getPurchaseRecord() {
-            //var date = $('#date').val();
-            //var invoiceNo = $('#invoiceNo').val();
-            //var supplier = $('#supplier').val();
-            var product = $('#product').val();
-            var code = $("#code").val();
-            var manufacturedDate = $("#manufacturedDate").val();
+            var createRow = "<tr>" + indexCell + slCell + productCell + productCodeCell + manufactureDateCell + expireDateCell + quantityCell + unitPriceCell + totalPriceCell + mrpCell + remarksCell + deleteCell + "</tr>";
+            $("#productTableBody").append(createRow);
+            $("#purchaseSubmitButton").prop('disabled', false);
+        }
+
+        function getProductsFromTextBox() {
+
+            var productId = $("#product").val();
+            var productCode = $("#code").val();
+            var manufactureDate = $("#manufacturedDate").val();
             var expireDate = $("#expireDate").val();
             var quantity = $("#quantity").val();
             var unitPrice = $("#unitPrice").val();
             var totalPrice = $("#totalPrice").val();
-            var mrp = $("#mrp").val();
+            var MRP = $("#mrp").val();
             var remarks = $("#remarks").val();
 
-            return { ProductId: product, Code: code, ManufacturedDate: manufacturedDate, ExpireDate: expireDate, Quantity: quantity, UnitPrice: unitPrice, TotalPrice: totalPrice, MRP: mrp, Remarks: remarks };
+            if (productId === undefined || productId.length == 0) {
+                alert('Please select your product!');
+                return;
+            }
+            if (quantity === undefined || quantity.length == 0) {
+                alert('Please enter product quantity!');
+                return;
+            }
+            if (unitPrice === undefined || unitPrice.length == 0) {
+                alert('Please enter product unit price!');
+                return;
+            }
+            //if (manufactureDate === undefined || manufactureDate.length == 0) {
+            //    manufactureDate = "--";
+            //}
+            //if (expireDate === undefined || expireDate.length == 0) {
+            //    expireDate = "--";
+            //}
+
+            var product = {
+
+                "ProductId": productId,
+                "ProductCode": productCode,
+                "ManufacturedDate": manufactureDate,
+                "ExpireDate": expireDate,
+                "Quantity": quantity,
+                "UnitPrice": unitPrice,
+                "TotalPrice": totalPrice,
+                "MRP": MRP,
+                "Remarks": remarks,
+            }
+            return product;
         }
-
-        function addRow(purchase) {
-
-            var productHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].ProductId' value='" + purchase.ProductId + "'/>";
-            var mfdHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].ManufacturedDate' value='" + purchase.ManufacturedDate + "'/>";
-            var expiredHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].ExpireDate' value='" + purchase.ExpireDate + "'/>";
-            var quantityHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].Quantity' value='" + purchase.Quantity + "'/>";
-            var uPriceHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].UnitPrice' value='" + purchase.UnitPrice + "'/>";
-            var tPriceHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].TotalPrice' value='" + purchase.TotalPrice + "'/>";
-            var mrpHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].MRP' value='" + purchase.MRP + "'/>";
-            var remarksHidden = "<input type='hidden' name='PurchaseDetails[" + index + "].Remarks' value='" + purchase.Remarks + "'/>";
-
-            var tr = "<tr>";
-            var serialcell = "<td>" + sl + "</td>";
-            var codeCell = "<td>" + productHidden + purchase.Code + "</td>";
-            var mfdCell = "<td>" + mfdHidden + purchase.ManufacturedDate + "</td>";
-            var expiredCell = "<td>" + expiredHidden + purchase.ExpireDate + "</td>";
-            var quantityCell = "<td>" + quantityHidden + purchase.Quantity + "</td>";
-            var uPriceCell = "<td>" + uPriceHidden + purchase.UnitPrice + "</td>";
-            var tPriceCell = "<td>" + tPriceHidden + purchase.TotalPrice + "</td>";
-            var mrpCell = "<td>" + mrpHidden + purchase.MRP + "</td>";
-            var remarksCell = "<td>" + remarksHidden + purchase.Remarks + "</td>";
-            var trend = "</tr>";
-
-            var row = tr + serialcell + codeCell + mfdCell + expiredCell + quantityCell + uPriceCell + tPriceCell + mrpCell + remarksCell + trend;
-
-            return row;
-        }
-
+        
+        // Table Action Scripts
+        $(".table tbody").on('click', '#deleteCell', function () {
+            $(this).closest('tr').remove();
+            // Check Exist Table Row
+            var row = $("#productTableBody").children('tr').length;
+            if (row > 0) {
+                $("#purchaseSubmitButton").prop('disabled', false);
+            }
+            else {
+                $("#purchaseSubmitButton").prop('disabled', true);
+            }
+        })
     </script>
 }

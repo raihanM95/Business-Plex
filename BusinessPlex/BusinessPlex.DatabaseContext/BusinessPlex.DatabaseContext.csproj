@@ -73,6 +73,18 @@
     <Compile Include="Migrations\201908070718349_PurchaseDetailsModel.Designer.cs">
       <DependentUpon>201908070718349_PurchaseDetailsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908160208316_UserModel.cs" />
+    <Compile Include="Migrations\201908160208316_UserModel.Designer.cs">
+      <DependentUpon>201908160208316_UserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908181933185_Purchase_SomeDataTypeChange.cs" />
+    <Compile Include="Migrations\201908181933185_Purchase_SomeDataTypeChange.Designer.cs">
+      <DependentUpon>201908181933185_Purchase_SomeDataTypeChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908191924572_PurchaseSupplier_DataAnnotationAdded.cs" />
+    <Compile Include="Migrations\201908191924572_PurchaseSupplier_DataAnnotationAdded.Designer.cs">
+      <DependentUpon>201908191924572_PurchaseSupplier_DataAnnotationAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -104,6 +116,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908070718349_PurchaseDetailsModel.resx">
       <DependentUpon>201908070718349_PurchaseDetailsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908160208316_UserModel.resx">
+      <DependentUpon>201908160208316_UserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181933185_Purchase_SomeDataTypeChange.resx">
+      <DependentUpon>201908181933185_Purchase_SomeDataTypeChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908191924572_PurchaseSupplier_DataAnnotationAdded.resx">
+      <DependentUpon>201908191924572_PurchaseSupplier_DataAnnotationAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

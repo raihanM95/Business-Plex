@@ -69,7 +69,7 @@
                         <li class="nav-item active  mr-lg-3">
                             @Html.ActionLink("Home", "", "", new { area = "" }, new { @class = "nav-link" })
                         </li>
-                        
+
                         <li class="nav-item mr-lg-3">
                             @Html.ActionLink("Services", "", "", new { area = "" }, new { @class = "nav-link" })
                         </li>
@@ -191,7 +191,7 @@
         </footer>
         <!-- //footer -->
     </div>
-
+    @model BusinessPlex.Models.UserViewModel
     <!-- Login modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -203,14 +203,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post">
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control border" placeholder=" " name="Name" id="recipient-name" required="">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-form-label" })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @id = "recipient-name", @class = "form-control border", @placeholder = "Enter username" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control border" placeholder=" " name="Password" id="password" required="">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-form-label" })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @id = "password", @class = "form-control border", @placeholder = "Enter password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="right-w3l">
                             <input type="submit" class="form-control border text-white" value="Login">
@@ -232,7 +238,7 @@
                                 Register Now
                             </a>
                         </p>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
@@ -249,22 +255,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post">
+                    @using (Html.BeginForm("New", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control border" placeholder=" " name="Name" id="recipient-rname" required="">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-form-label" })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @id = "recipient-rname", @class = "form-control border", @placeholder = "Enter username" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label for="recipient-email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control border" placeholder=" " name="Email" id="recipient-email" required="">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-form-label" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "recipient-email", @class = "form-control border", @placeholder = "Enter email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control border" placeholder=" " name="Password" id="password1" required="">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-form-label" })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @id = "password1", @class = "form-control border", @placeholder = "Enter password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label for="password2" class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control border" placeholder=" " name="Confirm Password" id="password2" required="">
+                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "col-form-label" })
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @id = "password2", @class = "form-control border", @placeholder = "Enter confirm password" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                         </div>
                         <div class="sub-w3l">
                             <div class="sub-agile">
@@ -277,13 +291,12 @@
                         <div class="right-w3l">
                             <input type="submit" class="form-control bg-light text-white" value="Register">
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
     </div>
     <!-- //Register modal -->
-    
     <!-- js -->
     <script src="~/Scripts/template/jquery-2.2.3.min.js"></script>
     <!-- magnific-popup -->

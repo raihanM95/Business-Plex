@@ -12,7 +12,8 @@ namespace BusinessPlex.Models.Models
         public int ID { get; set; }
 
         [Required]
-        public int InvoiceNo { get; set; }
+        [StringLength(10, MinimumLength = 5)]
+        public string InvoiceNo { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -20,5 +21,7 @@ namespace BusinessPlex.Models.Models
 
         public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }
+
+        public virtual ICollection<PurchaseDetails> PurchaseDetails { get; set; }
     }
 }

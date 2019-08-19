@@ -23,13 +23,13 @@ namespace BusinessPlex.Models.Models
         public int Quantity { get; set; }
 
         [Required]
-        public double UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
         [Required]
-        public double TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         [Required]
-        public double MRP { get; set; }
+        public decimal MRP { get; set; }
 
         public string Remarks { get; set; }
 

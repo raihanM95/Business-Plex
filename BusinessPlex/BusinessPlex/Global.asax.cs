@@ -20,9 +20,12 @@ namespace BusinessPlex
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Initialize AutoMapper
+            // Initialize AutoMapper
             Mapper.Initialize(cfg =>
             {
+                cfg.CreateMap<UserViewModel, User>();
+                cfg.CreateMap<User, UserViewModel>();
+
                 cfg.CreateMap<CategoryViewModel, Category>();
                 cfg.CreateMap<Category, CategoryViewModel>();
 

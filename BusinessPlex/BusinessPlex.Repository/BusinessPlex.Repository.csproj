@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{268FBCD6-8C19-4CC9-B68A-9EEB6ECFF046}</ProjectGuid>
+    <ProjectGuid>{1C123C1C-76B3-468E-9068-EF9D8A8EF852}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessPlex.Repository</RootNamespace>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessPlex">
+      <HintPath>..\BusinessPlex\bin\BusinessPlex.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -54,10 +57,7 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\PurchaseRepository.cs" />
     <Compile Include="Repository\SupplierRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessPlex.DatabaseContext\BusinessPlex.DatabaseContext.csproj">
@@ -68,6 +68,10 @@
       <Project>{4f642d63-edba-45b5-9bbf-305a1b9d5f6f}</Project>
       <Name>BusinessPlex.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

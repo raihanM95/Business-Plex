@@ -1,4 +1,5 @@
 ﻿using BusinessPlex.Models.Models;
+using BusinessPlex.Models;
 using BusinessPlex.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -12,34 +13,14 @@ namespace BusinessPlex.BLL.BLL
     {
         PurchaseRepository _purchaseRepository = new PurchaseRepository();
 
-        public bool Entry(PurchaseSupplier purchaseSupplier, List<PurchaseDetails> purchaseDetails)
+        public bool Entry(PurchaseSupplier purchaseSupplier)
         {
-            return _purchaseRepository.Entry(purchaseSupplier, purchaseDetails);
+            return _purchaseRepository.Entry(purchaseSupplier);
         }
 
-        //public bool DeleteSupplier(PurchaseDetails purchaseDetails)
-        //{
-        //    return _purchaseRepository.DeletePurchase(purchaseDetails);
-        //}
-
-        public bool Update(PurchaseSupplier purchaseSupplier, PurchaseDetails purchaseDetails)
+        public ProductViewModel GetByPrevious(Product product)
         {
-            return _purchaseRepository.Update(purchaseSupplier, purchaseDetails);
-        }
-
-        public List<PurchaseDetails> GetAll()
-        {
-            return _purchaseRepository.GetAll();
-        }
-
-        public PurchaseDetails GetByID(PurchaseDetails purchaseDetails)
-        {
-            return _purchaseRepository.GetByID(purchaseDetails);
-        }
-
-        public PurchaseDetails GetByPrevious(PurchaseDetails purchaseDetails)
-        {
-            return _purchaseRepository.GetByPrevious(purchaseDetails);
+            return _purchaseRepository.GetByPrevious(product);
         }
     }
 }
