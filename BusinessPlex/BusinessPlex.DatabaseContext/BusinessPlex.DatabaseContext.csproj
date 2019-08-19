@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201908191924572_PurchaseSupplier_DataAnnotationAdded.Designer.cs">
       <DependentUpon>201908191924572_PurchaseSupplier_DataAnnotationAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908191945302_SalesCustomerModel.cs" />
+    <Compile Include="Migrations\201908191945302_SalesCustomerModel.Designer.cs">
+      <DependentUpon>201908191945302_SalesCustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908191954234_SalesDetailsModel.cs" />
+    <Compile Include="Migrations\201908191954234_SalesDetailsModel.Designer.cs">
+      <DependentUpon>201908191954234_SalesDetailsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908191924572_PurchaseSupplier_DataAnnotationAdded.resx">
       <DependentUpon>201908191924572_PurchaseSupplier_DataAnnotationAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908191945302_SalesCustomerModel.resx">
+      <DependentUpon>201908191945302_SalesCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908191954234_SalesDetailsModel.resx">
+      <DependentUpon>201908191954234_SalesDetailsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -48,6 +48,7 @@
     <Compile Include="BLL\CustomerManager.cs" />
     <Compile Include="BLL\ProductManager.cs" />
     <Compile Include="BLL\PurchaseManager.cs" />
+    <Compile Include="BLL\SalesManager.cs" />
     <Compile Include="BLL\SupplierManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

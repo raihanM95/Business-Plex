@@ -1,8 +1,169 @@
-﻿
+﻿@model BusinessPlex.Models.SalesViewModel
 @{
     ViewBag.Title = "Entry";
     Layout = "~/Views/Shared/_LogInLayout.cshtml";
 }
 
-<h2>Entry</h2>
+@using (Html.BeginForm("Entry", "Sales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
+    <div class="form-horizontal">
+        <h4 class="h-position">Entry Sales</h4>
+        <hr class="hr-design">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Customer & Product Info</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CustomerId, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.CustomerId, Model.CustomerSelectListItems, "---Select---", new { @id = "customer", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @id = "date", @class = "form-control" }, @value = DateTime.Now })
+                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LoyaltyPoint, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.LoyaltyPoint, new { htmlAttributes = new { @id = "loyaltyPoint", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.LoyaltyPoint, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-9">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProductId, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.ProductId, Model.ProductSelectListItems, "---Select---", new { @id = "product", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AvailableQuantity, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.AvailableQuantity, new { htmlAttributes = new { @id = "availableQuantity", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.AvailableQuantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @id = "quantity", @class = "form-control", @placeholder = "Enter Quantity" } })
+                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UnitPrice, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @id = "unitPrice", @class = "form-control", @placeholder = "Enter Unit Price" } })
+                                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-4">
+                                <input type="button" id="addButton" value="Add" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>SL</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UnitPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalPrice)
+                            </th>
+
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody id="productTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="border border-primary">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GrandTotal, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.GrandTotal, new { htmlAttributes = new { @id = "grandTotal", @class = "form-control", @placeholder = "<View>", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.GrandTotal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DiscountAmounth, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.DiscountAmounth, new { htmlAttributes = new { @id = "discountAmounth", @class = "form-control", @placeholder = "Enter Discount Amounth" } })
+                        @Html.ValidationMessageFor(model => model.DiscountAmounth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Discount, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @id = "discount", @class = "form-control", @placeholder = "Enter Discount" } })
+                        @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PayableAmounth, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.PayableAmounth, new { htmlAttributes = new { @id = "payableAmounth", @class = "form-control", @placeholder = "Enter Payable Amounth" } })
+                        @Html.ValidationMessageFor(model => model.PayableAmounth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-11 col-md-1">
+                <input type="submit" id="salesSubmitButton" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

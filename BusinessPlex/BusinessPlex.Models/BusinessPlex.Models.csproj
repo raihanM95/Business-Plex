@@ -47,6 +47,8 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\PurchaseDetails.cs" />
     <Compile Include="Models\PurchaseSupplier.cs" />
+    <Compile Include="Models\SalesCustomer.cs" />
+    <Compile Include="Models\SalesDetails.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

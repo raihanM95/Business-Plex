@@ -13,7 +13,7 @@ namespace BusinessPlex.Models
         public int PurchaseSupplierId { get; set; }
 
         [Display(Name = "Date")]
-        [Required(ErrorMessage = "Please enter Date")]
+        [Required(ErrorMessage = "Please select Date")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
