@@ -1,4 +1,5 @@
-﻿using BusinessPlex.Models.Models;
+﻿using BusinessPlex.Models;
+using BusinessPlex.Models.Models;
 using BusinessPlex.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,16 @@ namespace BusinessPlex.BLL.BLL
         public bool Entry(SalesCustomer salesCustomer)
         {
             return _salesRepository.Entry(salesCustomer);
+        }
+
+        public int GetByPurchaseQuantity(Product product)
+        {
+            return _salesRepository.GetByPurchaseQuantity(product);
+        }
+
+        public int GetBySalesQuantity(Product product)
+        {
+            return _salesRepository.GetBySalesQuantity(product);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessPlex.DatabaseContext.DatabaseContext;
+using BusinessPlex.Models;
 using BusinessPlex.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,34 @@ namespace BusinessPlex.Repository.Repository
             }
 
             return false;
+        }
+
+        public int GetByPurchaseQuantity(Product product)
+        {
+            PurchaseViewModel aPurchase = new PurchaseViewModel();
+            var purchase = db.PurchaseDetails.Where(c => c.ProductId == product.ID).ToList();
+            if (purchase.Count > 0)
+            {
+                foreach (var pur in purchase)
+                {
+                    aPurchase.Quantity += pur.Quantity; 
+                }
+            }
+            return aPurchase.Quantity;
+        }
+
+        public int GetBySalesQuantity(Product product)
+        {
+            SalesViewModel aSales = new SalesViewModel();
+            var sales = db.SalesDetails.Where(c => c.ProductId == product.ID).ToList();
+            if (sales.Count > 0)
+            {
+                foreach (var sal in sales)
+                {
+                    aSales.Quantity += sal.Quantity;
+                }
+            }
+            return aSales.Quantity;
         }
     }
 }

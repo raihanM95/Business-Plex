@@ -292,6 +292,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -336,6 +337,7 @@
     <Content Include="Views\Supplier\Show.cshtml" />
     <Content Include="Views\Purchase\Entry.cshtml" />
     <Content Include="Views\Sales\Entry.cshtml" />
+    <Content Include="Views\Stock\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

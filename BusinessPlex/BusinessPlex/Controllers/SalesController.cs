@@ -44,6 +44,7 @@ namespace BusinessPlex.Controllers
                 _salesCustomer.CustomerId = salesViewModel.CustomerId;
                 _salesCustomer.Date = salesViewModel.Date;
                 _salesCustomer.LoyaltyPoint = salesViewModel.LoyaltyPoint;
+                _salesCustomer.PayableAmounth = salesViewModel.PayableAmounth;
                 _salesCustomer.SalesDetails = salesViewModel.SalesDetails;
 
                 if (_salesManager.Entry(_salesCustomer))
@@ -74,19 +75,23 @@ namespace BusinessPlex.Controllers
             Customer customer = new Customer();
             customer.ID = customerId;
             var aCustomer = _customerManager.GetByID(customer);
-            int loyaltyPoint = aCustomer.LoyaltyPoint;
+            customer.LoyaltyPoint = aCustomer.LoyaltyPoint;
 
-            return Json(loyaltyPoint, JsonRequestBehavior.AllowGet);
+            return Json(customer, JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult GetAvailableQuantity(int productId)
-        //{
-        //    Product product = new Product();
-        //    product.ID = productId;
-        //    var aProduct = _productManager.GetByID(product);
-        //    int loyaltyPoint = aProduct.Q;
+        public JsonResult GetAvailableQuantity(int productId)
+        {
+            PurchaseViewModel purchaseModel = new PurchaseViewModel();
+            SalesViewModel salesModel = new SalesViewModel();
+            Product product = new Product();
+            product.ID = productId;
+            purchaseModel.Quantity = Convert.ToInt32(_salesManager.GetByPurchaseQuantity(product));
+            salesModel.Quantity = Convert.ToInt32(_salesManager.GetBySalesQuantity(product));
 
-        //    return Json(loyaltyPoint, JsonRequestBehavior.AllowGet);
-        //}
+            salesModel.AvailableQuantity = purchaseModel.Quantity - salesModel.Quantity;
+
+            return Json(salesModel, JsonRequestBehavior.AllowGet);
+        }
     }
 }

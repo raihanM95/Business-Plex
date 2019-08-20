@@ -167,3 +167,150 @@
         </div>
     </div>
 }
+
+@section Scripts{
+    <script>
+        // Show LoyaltyPoint Scripts
+        $("#customer").change(function () {
+            debugger
+            var customerId = $("#customer").val();
+
+            $.ajax({
+                url: "/sales/getloyaltypoint",
+                type: "POST",
+                data: { customerId: customerId },
+                success: function (customer) {
+                    $("#loyaltyPoint").val(customer.LoyaltyPoint);
+                }
+            })
+        })
+
+        // Show AvailableQuantity Scripts
+        $("#product").change(function () {
+            debugger
+            var productId = $("#product").val();
+
+            $.ajax({
+                url: "/sales/getavailablequantity",
+                type: "POST",
+                data: { productId: productId },
+                success: function (salesModel) {
+                    $("#availableQuantity").val(salesModel.AvailableQuantity);
+                }
+            })
+        })
+
+        // Table Scripts
+        $("#addButton").click(function () {
+            addProductsInList();
+            calculateGrandTotal();
+            discountCalculation();
+        });
+
+        function addProductsInList() {
+
+            var getProducts = getProductsFromTextBox();
+
+            var index = $("#productTableBody").children("tr").length;
+
+            var sl = index;
+            var indexCell = "<td style='display:none'><input type='hidden' id='index" + index + "' name='SalesDetails.index' value='" + index + "' /></td>";
+            var slCell = "<td>" + (++sl) + "</td>";
+            var productCell = "<td><input type='hidden' id='product" + index + "' name='SalesDetails[" + index + "].ProductId' value='" + getProducts.ProductId + "'/>" + getProducts.Product + "</td>";
+            var quantityCell = "<td><input type='hidden' id='quantity" + index + "' name='SalesDetails[" + index + "].Quantity' value='" + getProducts.Quantity + "' />" + getProducts.Quantity + "</td>";
+            var unitPriceCell = "<td><input type='hidden' id='unitPrice" + index + "' name='SalesDetails[" + index + "].UnitPrice' value='" + getProducts.UnitPrice + "' />" + getProducts.UnitPrice + "</td>";
+            var totalPriceCell = "<td id='totalPrice'><input type='hidden' id='totalPrice" + index + "' name='SalesDetails[" + index + "].TotalPrice' value='" + getProducts.TotalPrice + "' />" + getProducts.TotalPrice + "</td>";
+
+            var deleteCell = "<td><a id='deleteCell' class='btn btn-danger'><i class='glyphicon glyphicon-trash'></i></a></td>";
+
+            var createRow = "<tr>" + indexCell + slCell + productCell + quantityCell + unitPriceCell + totalPriceCell + deleteCell + "</tr>";
+            $("#productTableBody").append(createRow);
+            $("#purchaseSubmitButton").prop('disabled', false);
+        }
+
+        function getProductsFromTextBox() {
+
+            var product = $("#product option:selected").text();
+            var productId = $("#product").val();
+            var quantity = $("#quantity").val();
+            var unitPrice = $("#unitPrice").val();
+            var totalPrice = quantity * unitPrice;
+
+            if (productId === undefined || productId.length == 0) {
+                alert('Please select your product!');
+                return;
+            }
+
+            if (quantity === undefined || quantity.length == 0) {
+                alert('Please enter product quantity!');
+                return;
+            }
+            if (unitPrice === undefined || unitPrice.length == 0) {
+                alert('Please enter product unit price!');
+                return;
+            }
+            //if (manufactureDate === undefined || manufactureDate.length == 0) {
+            //    manufactureDate = "--";
+            //}
+            //if (expireDate === undefined || expireDate.length == 0) {
+            //    expireDate = "--";
+            //}
+
+            var product = {
+
+                "Product": product,
+                "ProductId": productId,
+                "Quantity": quantity,
+                "UnitPrice": unitPrice,
+                "TotalPrice": totalPrice,
+            }
+            return product;
+        }
+
+        // Table Action Scripts
+        $(".table tbody").on('click', '#deleteCell', function () {
+            $(this).closest('tr').remove();
+            // Check Exist Table Row
+            var row = $("#productTableBody").children('tr').length;
+            if (row > 0) {
+                $("#salesSubmitButton").prop('disabled', false);
+            }
+            else {
+                $("#salesSubmitButton").prop('disabled', true);
+            }
+        })
+
+        function calculateGrandTotal() {
+            var grandTotal = 0;
+            debugger
+            $(".table tbody tr").each(function () {
+                debugger
+                var val = $(this).find("#totalPrice").text();
+                debugger
+                val = parseFloat(val);
+                grandTotal += val;
+            })
+            $("#grandTotal").val(grandTotal);
+        }
+
+        function discountCalculation() {
+            var loyaltyPoint = $("#loyaltyPoint").val();
+            var grandTotal = $("#grandTotal").val();
+
+            var point = grandTotal / 1000;
+
+            loyaltyPoint = parseInt(loyaltyPoint) + parseFloat(point);
+            $("#loyaltyPoint").val(loyaltyPoint);
+
+            var discount = loyaltyPoint / 10;
+            $("#discount").val(discount);
+
+            var discountAmounth = (grandTotal * discount) / 100;
+            $("#discountAmounth").val(discountAmounth);
+
+            var payableAmounth = grandTotal - discountAmounth;
+            $("#payableAmounth").val(payableAmounth);
+        }
+
+    </script>
+}
