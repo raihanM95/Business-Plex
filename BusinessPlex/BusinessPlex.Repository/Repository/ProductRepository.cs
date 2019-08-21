@@ -61,7 +61,7 @@ namespace BusinessPlex.Repository.Repository
 
         public List<Product> GetAll()
         {
-            return db.Products.ToList();
+            return db.Products.Include(p => p.Category).ToList();
         }
 
         public Product GetByID(Product product)

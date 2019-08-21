@@ -303,6 +303,7 @@
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\PurchaseViewModel.cs" />
     <Compile Include="Models\SalesViewModel.cs" />
+    <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Models\SupplierViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
