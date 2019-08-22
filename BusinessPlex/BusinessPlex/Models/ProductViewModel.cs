@@ -10,7 +10,11 @@ namespace BusinessPlex.Models
 {
     public class ProductViewModel
     {
-        public int ID { get; set; }
+        public ProductViewModel()
+        {
+            ProductsView = new List<ProductViewModel>();
+        }
+        public int ProductId { get; set; }
 
         [Display(Name = "Code")]
         [Required(ErrorMessage = "Please enter Code")]
@@ -34,12 +38,30 @@ namespace BusinessPlex.Models
 
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
 
         public decimal PreviousCostPrice { get; set; }
         public decimal PreviousMRP { get; set; }
 
-        public IEnumerable<SelectListItem> CategorySelectListItems { get; set; }
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
 
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        public DateTime EndDate { get; set; }
+
+        [Display(Name = "CP(TK)")]
+        public decimal TotalCostPrice { get; set; }
+
+        [Display(Name = "Sale(TK)")]
+        public decimal SalesPrice { get; set; }
+
+        [Display(Name = "Profit(TK)")]
+        public decimal Profit { get; set; }
+
+        public IEnumerable<SelectListItem> CategorySelectListItems { get; set; }
+        public List<ProductViewModel> ProductsView { get; set; }
         public List<Product> Products { get; set; }
     }
 }

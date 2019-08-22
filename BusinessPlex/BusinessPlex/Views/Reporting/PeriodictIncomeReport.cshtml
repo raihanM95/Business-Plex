@@ -1,0 +1,103 @@
+﻿@model BusinessPlex.Models.ProductViewModel
+@{
+    ViewBag.Title = "PeriodictIncomeReport";
+    Layout = "~/Views/Shared/_LogInLayout.cshtml";
+}
+
+@using (Html.BeginForm("PeriodictIncomeReport", "Reporting", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 class="h-position">Income Report</h4>
+        <hr class="hr-design">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" }, @value = DateTime.Now })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" }, @value = DateTime.Now })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-8 col-md-4">
+                        <input type="submit" value="Search" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table table-bordered table-striped table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>SL</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCostPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profit)
+            </th>
+        </tr>
+
+    </thead>
+    @if (Model != null)
+    {
+        <tbody>
+            @{ int sl = 1;}
+            @foreach (var item in Model.ProductsView)
+            {
+                <tr>
+                    <td>
+                        @(sl++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalCostPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profit)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>

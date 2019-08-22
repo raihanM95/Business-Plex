@@ -180,24 +180,7 @@
 
                     </thead>
                     <tbody id="productTableBody">
-                        @*@if (Model != null && Model.PurchaseDetails.Count > 0)
-                        {
-                            int sl = 1;
-                            foreach (var product in Model.PurchaseDetails)
-                            {
-                                <tr>
-                                    <td>@(sl++)</td>
-                                    <td>@product.Product.Code</td>
-                                    <td>@product.ManufacturedDate</td>
-                                    <td>@product.ExpireDate</td>
-                                    <td>@product.Quantity</td>
-                                    <td>@product.UnitPrice</td>
-                                    <td>@product.TotalPrice</td>
-                                    <td>@product.MRP</td>
-                                    <td>@product.Remarks</td>
-                                </tr>
-                            }
-                        }*@
+                        
                     </tbody>
                 </table>
             </div>

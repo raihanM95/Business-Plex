@@ -41,7 +41,7 @@ namespace BusinessPlex.Repository.Repository
                     count++;
                     if (latestList == count)
                     {
-                        aProduct.ID = pro.ProductId;
+                        aProduct.ProductId = pro.ProductId;
                         aProduct.PreviousCostPrice = pro.UnitPrice;
                         aProduct.PreviousMRP = pro.MRP;
                     }

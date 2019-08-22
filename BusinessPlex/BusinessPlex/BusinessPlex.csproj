@@ -291,6 +291,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -339,6 +340,8 @@
     <Content Include="Views\Purchase\Entry.cshtml" />
     <Content Include="Views\Sales\Entry.cshtml" />
     <Content Include="Views\Stock\Search.cshtml" />
+    <Content Include="Views\Reporting\PeriodictIncomeReport.cshtml" />
+    <Content Include="Views\Reporting\PeriodicIncomeExpenseOnPurchase.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

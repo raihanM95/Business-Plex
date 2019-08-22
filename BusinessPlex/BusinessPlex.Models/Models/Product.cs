@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +27,12 @@ namespace BusinessPlex.Models.Models
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        [NotMapped]
+        public decimal TotalCostPrice { get; set; }
+        [NotMapped]
+        public decimal SalesPrice { get; set; }
+        [NotMapped]
+        public decimal Profit { get; set; }
     }
 }
