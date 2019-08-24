@@ -30,7 +30,7 @@ namespace BusinessPlex.Models
         public string Image { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
 
-        [Display(Name = "Reorder level")]
+        [Display(Name = "Reorder Level")]
         public int ReorderLevel { get; set; }
 
         [Display(Name = "Description")]
@@ -38,6 +38,8 @@ namespace BusinessPlex.Models
 
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
+        [Display(Name = "Category")]
         public string CategoryName { get; set; }
 
         public decimal PreviousCostPrice { get; set; }

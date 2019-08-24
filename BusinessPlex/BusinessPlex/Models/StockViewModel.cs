@@ -9,6 +9,13 @@ namespace BusinessPlex.Models
 {
     public class StockViewModel
     {
+        public StockViewModel()
+        {
+            Stocks = new List<StockViewModel>();
+        }
+
+        public int ProductId { get; set; }
+
         [Display(Name = "Code")]
         public string ProductCode { get; set; }
 
@@ -22,6 +29,7 @@ namespace BusinessPlex.Models
         public int ReorderLevel { get; set; }
 
         [Display(Name = "Expired Date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiredDate { get; set; }
 
         [Display(Name = "Expired Qty")]
@@ -40,11 +48,14 @@ namespace BusinessPlex.Models
         public int ClosingBalance { get; set; }
 
         [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
 
         public List<Product> Products { get; set; }
+        public List<StockViewModel> Stocks { get; set; }
     }
 }

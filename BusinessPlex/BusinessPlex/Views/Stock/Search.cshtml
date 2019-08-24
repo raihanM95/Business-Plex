@@ -6,13 +6,13 @@
 
 @using (Html.BeginForm("Search", "Stock", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
 
     <div>
         <h4 class="h-position">Stock</h4>
         <hr class="hr-design">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         <div class="row">
             <div class="col-md-1 col-md-offset-1">
                 @Html.LabelFor(model => model.ProductName, new { @class = "control-label" })
@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-3 form-group">
                 @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" }, @value = DateTime.Now })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-3 form-group">
                 @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" }, @value = DateTime.Now })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -86,30 +86,68 @@
             <th>
                 @Html.DisplayNameFor(model => model.ReorderLevel)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiredQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpeningBalance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClosingBalance)
+            </th>
         </tr>
     </thead>
-
-    @{ int sl = 1;}
-    @foreach (var item in Model.Products)
+    @if (Model != null)
     {
         <tbody>
-            <tr>
-                <td>
-                    @(sl++)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReorderLevel)
-                </td>
-            </tr>
+            @{ int sl = 1;}
+            @foreach (var item in Model.Stocks)
+            {
+                <tr>
+                    <td>
+                        @(sl++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReorderLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpiredDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpiredQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpeningBalance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StockIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StockOut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClosingBalance)
+                    </td>
+                </tr>
+            }
         </tbody>
     }
 </table>
