@@ -24,6 +24,7 @@ Admin can easily setup Catalog, Party(Customer, Supplier), Purchase, Stock, Sale
 
 - Front end: HTML, CSS, Bootstrap, Font awesome, JavaScript, Ajax
 - Back end: [.Net MVC with C#] Framework version 5
+- ORM: Entity Framework (Code First)
 
 ## About the Author
 
