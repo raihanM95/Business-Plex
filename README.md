@@ -10,7 +10,7 @@
   <a>
     <img src="https://img.shields.io/github/stars/raihanM95/Business-Plex" alt="stars">
   </a>
-  <a href="https://github.com/raihanM95/Business-Plex/blob/main/LICENSE">
+  <a href="https://github.com/raihanM95/Business-Plex/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache-yellow.svg" alt="licenses">
   </a>
 </p>
@@ -36,4 +36,4 @@ Admin can easily setup Catalog, Party(Customer, Supplier), Purchase, Stock, Sale
 
 ## Licensing
 
-raihanM95/Business-Plex Project is licensed with the [Apache License](https://github.com/raihanM95/Business-Plex/blob/main/LICENSE).
+raihanM95/Business-Plex Project is licensed with the [Apache License](https://github.com/raihanM95/Business-Plex/blob/master/LICENSE).
